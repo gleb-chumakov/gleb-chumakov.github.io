@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gleb Chumakov</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0f1f3d;
+    --gold: #c9973a;
+    --cream: #f7f4ef;
+    --text: #1a1a1a;
+    --muted: #666;
+    --border: #e2ddd6;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: var(--navy);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 3rem;
+    height: 60px;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: #fff;
+    font-size: 1.1rem;
+    letter-spacing: 0.03em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding: 100px 3rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,151,58,0.15);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    top: -50px; right: -50px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,151,58,0.1);
+  }
+  .hero-inner { max-width: 680px; }
+  .hero-tag {
+    display: inline-block;
+    color: var(--gold);
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+  }
+  .hero h1 span { color: var(--gold); }
+  .hero-desc {
+    color: rgba(255,255,255,0.65);
+    font-size: 1.05rem;
+    font-weight: 300;
+    max-width: 480px;
+    margin-bottom: 2.5rem;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.75rem;
+    border-radius: 2px;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 500;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-primary { background: var(--gold); color: #fff; border: 2px solid var(--gold); }
+  .btn-primary:hover { background: transparent; color: var(--gold); }
+  .btn-outline { background: transparent; color: rgba(255,255,255,0.8); border: 2px solid rgba(255,255,255,0.3); }
+  .btn-outline:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
+
+  /* SECTION BASE */
+  section { padding: 5rem 3rem; }
+  .section-label {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    color: var(--navy);
+    margin-bottom: 3rem;
+    line-height: 1.2;
+  }
+  .section-title.light { color: #fff; }
+
+  /* ABOUT */
+  .about { background: #fff; }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    max-width: 900px;
+  }
+  .about-text p {
+    color: var(--muted);
+    margin-bottom: 1rem;
+    font-weight: 300;
+    font-size: 0.97rem;
+  }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .stat {
+    border-left: 2px solid var(--gold);
+    padding-left: 1rem;
+  }
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--navy);
+    font-weight: 700;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.25rem;
+    font-weight: 400;
+  }
+
+  /* EXPERIENCE */
+  .experience { background: var(--cream); }
+  .exp-list { display: flex; flex-direction: column; gap: 0; max-width: 750px; }
+  .exp-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+  .exp-date {
+    font-size: 0.78rem;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+    padding-top: 0.2rem;
+    font-weight: 400;
+  }
+  .exp-org {
+    font-size: 0.75rem;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+  }
+  .exp-role {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--navy);
+    margin-bottom: 0.5rem;
+  }
+  .exp-desc {
+    font-size: 0.88rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  /* EDUCATION */
+  .education { background: var(--navy); }
+  .edu-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 2rem 2.5rem;
+    max-width: 550px;
+  }
+  .edu-school {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: #fff;
+    margin-bottom: 0.5rem;
+  }
+  .edu-degree {
+    color: var(--gold);
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+  }
+  .edu-details { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .edu-details li {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.6);
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+  .edu-details li::before {
+    content: '—';
+    color: var(--gold);
+    flex-shrink: 0;
+    font-size: 0.75rem;
+  }
+
+  /* CONTACT */
+  .contact { background: #fff; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 700px;
+  }
+  .contact-item {
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.2s;
+    display: block;
+  }
+  .contact-item:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .contact-type {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 500;
+    margin-bottom: 0.4rem;
+  }
+  .contact-val {
+    font-size: 0.88rem;
+    color: var(--navy);
+    font-weight: 500;
+    word-break: break-word;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.05em;
+  }
+
+  html { scroll-behavior: smooth; }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Gleb Chumakov</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-inner">
+    <span class="hero-tag">Sport Management · Business Development</span>
+    <h1>Gleb<br><span>Chumakov</span></h1>
+    <p class="hero-desc">International student from Moscow, currently building a career on the business side of sports. Based in New York City — interning at Brooklyn FC, aiming for the front office.</p>
+    <div class="hero-cta">
+      <a href="#experience" class="btn btn-primary">View Experience</a>
+      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="section-label">About me</div>
+  <h2 class="section-title">Business of sport,<br>from the inside out</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I'm a <strong>Sport Management student at Syracuse University's Falk College</strong>, originally from Moscow, Russia. Growing up immersed in sports across different cultures gave me a global lens I bring into every role.</p>
+      <p>My interests are in <strong>operations, business development, and team management</strong> — markets like NBA Europe and NBA USA are where I see myself making an impact long-term.</p>
+      <p>Whether organizing events for the Russian Tennis Federation, running game-day operations at Brooklyn FC, or founding a 50-member student organization from scratch — I'm someone who builds things.</p>
+    </div>
+    <div class="stats-grid">
+      <div class="stat">
+        <div class="stat-num">3×</div>
+        <div class="stat-label">Dean's List honoree</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">Members in org I founded</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">500+</div>
+        <div class="stat-label">Event participants served</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Years around sport ops</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="section-label">Career</div>
+  <h2 class="section-title">Experience</h2>
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-date">2025 – Present</div>
+      <div>
+        <div class="exp-org">Brooklyn FC · New York City</div>
+        <div class="exp-role">Business Development Intern</div>
+        <div class="exp-desc">Working on activations, game-day operations, partnerships, and sales for a professional soccer club in NYC.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Jan 2026 – Present</div>
+      <div>
+        <div class="exp-org">Syracuse University</div>
+        <div class="exp-role">Founder & President — Russian Speaking Student Association</div>
+        <div class="exp-desc">Founded and led a cultural organization serving 50+ Russian-speaking and international students. Directed executive board operations, managed university funding, and organized cultural events including Russian, Soviet, and Georgian dinners and off-campus programming.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Aug 2025 – Present</div>
+      <div>
+        <div class="exp-org">Falk College of Sport · Syracuse University</div>
+        <div class="exp-role">Front Desk & Dean's Office Assistant</div>
+        <div class="exp-desc">Supported event planning, managed departmental communications, and provided front-line administrative support across the Sport Management department and Dean's Office.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Apr 2024 – Present</div>
+      <div>
+        <div class="exp-org">Sports Management Club · Syracuse University</div>
+        <div class="exp-role">Volunteering & PR Committee Member</div>
+        <div class="exp-desc">Directed the club's annual promotional podcast — scripting, filming, and on-site coordination. Produced and edited content in Adobe Premiere Pro. Contributed to charity auction and basketball tournament organization.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">May – Aug 2023</div>
+      <div>
+        <div class="exp-org">Russian Tennis Federation · Moscow</div>
+        <div class="exp-role">Event Management & Accounting Intern</div>
+        <div class="exp-desc">Organized documents and logistics for 8 tennis tournaments. Managed merchandise supply for 500+ participants. Served as event-day assistant across 6 competition days.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">2019 – 2023</div>
+      <div>
+        <div class="exp-org">Club Basketball · Moscow</div>
+        <div class="exp-role">Recruiting & Team Managing Staff</div>
+        <div class="exp-desc">Built and managed a 80+ candidate recruitment pipeline each season. Developed social media content across Instagram, Telegram, and YouTube to promote the team.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-date">Summer 2020</div>
+      <div>
+        <div class="exp-org">Stremlenie Basketball Club · Moscow</div>
+        <div class="exp-role">Seasonal Assistant Officiate</div>
+        <div class="exp-desc">Managed live scoring and player statistics for 100+ youth basketball games. Coordinated with referees, coaches, and table staff during competitions.</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="education" id="education">
+  <div class="section-label">Academic background</div>
+  <h2 class="section-title light">Education</h2>
+  <div class="edu-card">
+    <div class="edu-school">Syracuse University</div>
+    <div class="edu-degree">B.S. Sport Management · Finance Minor · Class of 2028</div>
+    <ul class="edu-details">
+      <li>David B. Falk College of Sport & Whitman School of Management</li>
+      <li>Dean's List: Fall '24, Spring '25, Fall '25</li>
+      <li>Focus: business development, sponsorship, front office operations</li>
+    </ul>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="section-label">Get in touch</div>
+  <h2 class="section-title">Let's connect</h2>
+  <div class="contact-grid">
+    <a href="mailto:gchumako@syr.edu" class="contact-item">
+      <div class="contact-type">Email</div>
+      <div class="contact-val">gchumako@syr.edu</div>
+    </a>
+    <a href="tel:4138298168" class="contact-item">
+      <div class="contact-type">Phone</div>
+      <div class="contact-val">(413) 829-8168</div>
+    </a>
+    <a href="https://linkedin.com/in/gleb-chumakov" target="_blank" class="contact-item">
+      <div class="contact-type">LinkedIn</div>
+      <div class="contact-val">gleb-chumakov</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2026 Gleb Chumakov · Built with HTML & CSS
+</footer>
+
+</body>
+</html>
