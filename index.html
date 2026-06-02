@@ -25,7 +25,6 @@
     line-height: 1.7;
   }
 
-  /* NAV */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -55,7 +54,6 @@
   }
   .nav-links a:hover { color: var(--gold); }
 
-  /* HERO */
   .hero {
     min-height: 100vh;
     background: var(--navy);
@@ -81,7 +79,30 @@
     border-radius: 50%;
     border: 1px solid rgba(201,151,58,0.1);
   }
-  .hero-inner { max-width: 680px; }
+  .hero-content {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+    width: 100%;
+    max-width: 1000px;
+  }
+  .hero-inner { flex: 1; }
+  .hero-photo {
+    flex-shrink: 0;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--gold);
+    position: relative;
+    z-index: 1;
+  }
+  .hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+  }
   .hero-tag {
     display: inline-block;
     color: var(--gold);
@@ -108,11 +129,7 @@
     margin-bottom: 2.5rem;
     line-height: 1.8;
   }
-  .hero-cta {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-  }
+  .hero-cta { display: flex; gap: 1rem; flex-wrap: wrap; }
   .btn {
     display: inline-block;
     padding: 0.75rem 1.75rem;
@@ -130,7 +147,6 @@
   .btn-outline { background: transparent; color: rgba(255,255,255,0.8); border: 2px solid rgba(255,255,255,0.3); }
   .btn-outline:hover { border-color: rgba(255,255,255,0.7); color: #fff; }
 
-  /* SECTION BASE */
   section { padding: 5rem 3rem; }
   .section-label {
     font-size: 0.75rem;
@@ -149,7 +165,6 @@
   }
   .section-title.light { color: #fff; }
 
-  /* ABOUT */
   .about { background: #fff; }
   .about-grid {
     display: grid;
@@ -165,15 +180,8 @@
     font-size: 0.97rem;
   }
   .about-text p strong { color: var(--text); font-weight: 500; }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-  }
-  .stat {
-    border-left: 2px solid var(--gold);
-    padding-left: 1rem;
-  }
+  .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .stat { border-left: 2px solid var(--gold); padding-left: 1rem; }
   .stat-num {
     font-family: 'Playfair Display', serif;
     font-size: 2rem;
@@ -181,14 +189,8 @@
     font-weight: 700;
     line-height: 1;
   }
-  .stat-label {
-    font-size: 0.8rem;
-    color: var(--muted);
-    margin-top: 0.25rem;
-    font-weight: 400;
-  }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; font-weight: 400; }
 
-  /* EXPERIENCE */
   .experience { background: var(--cream); }
   .exp-list { display: flex; flex-direction: column; gap: 0; max-width: 750px; }
   .exp-item {
@@ -199,35 +201,11 @@
     border-bottom: 1px solid var(--border);
   }
   .exp-item:first-child { border-top: 1px solid var(--border); }
-  .exp-date {
-    font-size: 0.78rem;
-    color: var(--muted);
-    letter-spacing: 0.05em;
-    padding-top: 0.2rem;
-    font-weight: 400;
-  }
-  .exp-org {
-    font-size: 0.75rem;
-    color: var(--gold);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 500;
-    margin-bottom: 0.3rem;
-  }
-  .exp-role {
-    font-weight: 500;
-    font-size: 1rem;
-    color: var(--navy);
-    margin-bottom: 0.5rem;
-  }
-  .exp-desc {
-    font-size: 0.88rem;
-    color: var(--muted);
-    font-weight: 300;
-    line-height: 1.7;
-  }
+  .exp-date { font-size: 0.78rem; color: var(--muted); letter-spacing: 0.05em; padding-top: 0.2rem; font-weight: 400; }
+  .exp-org { font-size: 0.75rem; color: var(--gold); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; margin-bottom: 0.3rem; }
+  .exp-role { font-weight: 500; font-size: 1rem; color: var(--navy); margin-bottom: 0.5rem; }
+  .exp-desc { font-size: 0.88rem; color: var(--muted); font-weight: 300; line-height: 1.7; }
 
-  /* EDUCATION */
   .education { background: var(--navy); }
   .edu-card {
     background: rgba(255,255,255,0.05);
@@ -235,40 +213,14 @@
     padding: 2rem 2.5rem;
     max-width: 550px;
   }
-  .edu-school {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-  }
-  .edu-degree {
-    color: var(--gold);
-    font-size: 0.9rem;
-    margin-bottom: 1.5rem;
-  }
+  .edu-school { font-family: 'Playfair Display', serif; font-size: 1.4rem; color: #fff; margin-bottom: 0.5rem; }
+  .edu-degree { color: var(--gold); font-size: 0.9rem; margin-bottom: 1.5rem; }
   .edu-details { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-  .edu-details li {
-    font-size: 0.88rem;
-    color: rgba(255,255,255,0.6);
-    display: flex;
-    align-items: baseline;
-    gap: 0.75rem;
-  }
-  .edu-details li::before {
-    content: '—';
-    color: var(--gold);
-    flex-shrink: 0;
-    font-size: 0.75rem;
-  }
+  .edu-details li { font-size: 0.88rem; color: rgba(255,255,255,0.6); display: flex; align-items: baseline; gap: 0.75rem; }
+  .edu-details li::before { content: '—'; color: var(--gold); flex-shrink: 0; font-size: 0.75rem; }
 
-  /* CONTACT */
   .contact { background: #fff; }
-  .contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    max-width: 700px;
-  }
+  .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 700px; }
   .contact-item {
     border: 1px solid var(--border);
     padding: 1.5rem;
@@ -277,22 +229,9 @@
     display: block;
   }
   .contact-item:hover { border-color: var(--gold); transform: translateY(-2px); }
-  .contact-type {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 500;
-    margin-bottom: 0.4rem;
-  }
-  .contact-val {
-    font-size: 0.88rem;
-    color: var(--navy);
-    font-weight: 500;
-    word-break: break-word;
-  }
+  .contact-type { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 500; margin-bottom: 0.4rem; }
+  .contact-val { font-size: 0.88rem; color: var(--navy); font-weight: 500; word-break: break-word; }
 
-  /* FOOTER */
   footer {
     background: var(--navy);
     text-align: center;
@@ -317,20 +256,23 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-inner">
-    <span class="hero-tag">Sport Management · Business Development</span>
-    <h1>Gleb<br><span>Chumakov</span></h1>
-    <p class="hero-desc">International student from Moscow, currently building a career on the business side of sports. Based in New York City — interning at Brooklyn FC, aiming for the front office.</p>
-    <div class="hero-cta">
-      <a href="#experience" class="btn btn-primary">View Experience</a>
-      <a href="#contact" class="btn btn-outline">Get in Touch</a>
+  <div class="hero-content">
+    <div class="hero-inner">
+      <span class="hero-tag">Sport Management · Business Development</span>
+      <h1>Gleb<br><span>Chumakov</span></h1>
+      <p class="hero-desc">International student from Moscow, currently building a career on the business side of sports. Based in New York City — interning at Brooklyn FC, aiming for the front office.</p>
+      <div class="hero-cta">
+        <a href="#experience" class="btn btn-primary">View Experience</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="Profile_Picture_-_Edited.png" alt="Gleb Chumakov">
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
 <section class="about" id="about">
   <div class="section-label">About me</div>
   <h2 class="section-title">Business of sport,<br>from the inside out</h2>
@@ -361,12 +303,10 @@
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section class="experience" id="experience">
   <div class="section-label">Career</div>
   <h2 class="section-title">Experience</h2>
   <div class="exp-list">
-
     <div class="exp-item">
       <div class="exp-date">2025 – Present</div>
       <div>
@@ -375,7 +315,6 @@
         <div class="exp-desc">Working on activations, game-day operations, partnerships, and sales for a professional soccer club in NYC.</div>
       </div>
     </div>
-
     <div class="exp-item">
       <div class="exp-date">Jan 2026 – Present</div>
       <div>
@@ -384,7 +323,6 @@
         <div class="exp-desc">Founded and led a cultural organization serving 50+ Russian-speaking and international students. Directed executive board operations, managed university funding, and organized cultural events including Russian, Soviet, and Georgian dinners and off-campus programming.</div>
       </div>
     </div>
-
     <div class="exp-item">
       <div class="exp-date">Aug 2025 – Present</div>
       <div>
@@ -393,7 +331,6 @@
         <div class="exp-desc">Supported event planning, managed departmental communications, and provided front-line administrative support across the Sport Management department and Dean's Office.</div>
       </div>
     </div>
-
     <div class="exp-item">
       <div class="exp-date">Apr 2024 – Present</div>
       <div>
@@ -402,7 +339,6 @@
         <div class="exp-desc">Directed the club's annual promotional podcast — scripting, filming, and on-site coordination. Produced and edited content in Adobe Premiere Pro. Contributed to charity auction and basketball tournament organization.</div>
       </div>
     </div>
-
     <div class="exp-item">
       <div class="exp-date">May – Aug 2023</div>
       <div>
@@ -411,16 +347,14 @@
         <div class="exp-desc">Organized documents and logistics for 8 tennis tournaments. Managed merchandise supply for 500+ participants. Served as event-day assistant across 6 competition days.</div>
       </div>
     </div>
-
     <div class="exp-item">
       <div class="exp-date">2019 – 2023</div>
       <div>
         <div class="exp-org">Club Basketball · Moscow</div>
         <div class="exp-role">Recruiting & Team Managing Staff</div>
-        <div class="exp-desc">Built and managed a 80+ candidate recruitment pipeline each season. Developed social media content across Instagram, Telegram, and YouTube to promote the team.</div>
+        <div class="exp-desc">Built and managed an 80+ candidate recruitment pipeline each season. Developed social media content across Instagram, Telegram, and YouTube to promote the team.</div>
       </div>
     </div>
-
     <div class="exp-item">
       <div class="exp-date">Summer 2020</div>
       <div>
@@ -429,11 +363,9 @@
         <div class="exp-desc">Managed live scoring and player statistics for 100+ youth basketball games. Coordinated with referees, coaches, and table staff during competitions.</div>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- EDUCATION -->
 <section class="education" id="education">
   <div class="section-label">Academic background</div>
   <h2 class="section-title light">Education</h2>
@@ -448,7 +380,6 @@
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact" id="contact">
   <div class="section-label">Get in touch</div>
   <h2 class="section-title">Let's connect</h2>
