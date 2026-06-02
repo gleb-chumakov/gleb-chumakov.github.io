@@ -242,6 +242,33 @@
   }
 
   html { scroll-behavior: smooth; }
+
+  @media (max-width: 768px) {
+    nav { padding: 0 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .nav-links a { font-size: 0.75rem; }
+
+    .hero { padding: 100px 1.5rem 3rem; }
+    .hero-content {
+      flex-direction: column-reverse;
+      align-items: center;
+      gap: 2.5rem;
+      text-align: center;
+    }
+    .hero-photo { width: 200px; height: 200px; }
+    .hero-desc { max-width: 100%; }
+    .hero-cta { justify-content: center; }
+
+    section { padding: 3.5rem 1.5rem; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .exp-date { padding-top: 0; }
+
+    .contact-grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
